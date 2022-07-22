@@ -50,6 +50,6 @@ class User:
     def get_user_by_id(cls,data):
         query="SELECT * FROM users WHERE id = %(id)s"
         results = connectToMySQL('projects-group').query_db( query, data )
-        return results[0]
+        return cls(results[0])
 
 
