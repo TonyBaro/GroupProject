@@ -17,13 +17,13 @@ class User:
     @classmethod
     def add_user(cls,data):
         query="INSERT INTO users(first_name,last_name,email,password) VALUES (%(first_name)s,%(last_name)s,%(email)s,%(password)s)"
-        return connectToMySQL('DATABASE CHANGE THIS').query_db( query, data)
+        return connectToMySQL('projects-group').query_db( query, data)
 
     @classmethod
     def validate(cls,data):
         valid = True
         query="SELECT * FROM users WHERE email = %(email)s"
-        results = connectToMySQL('DATABASE CHANGE THIS').query_db( query, data )
+        results = connectToMySQL('projects-group').query_db( query, data )
         if len(results) >= 1:
             flash("Email already taken.","register")
             valid = False
@@ -47,13 +47,13 @@ class User:
     @classmethod
     def log_in(cls,data):
         query="SELECT * FROM users WHERE email = %(email)s"
-        results = connectToMySQL('DATABASE CHANGE THIS').query_db( query, data )
+        results = connectToMySQL('projects-group').query_db( query, data )
         return cls(results[0])
         
     @classmethod
     def get_user_by_id(cls,data):
         query="SELECT * FROM users WHERE id = %(id)s"
-        results = connectToMySQL('DATABASE CHANGE THIS').query_db( query, data )
+        results = connectToMySQL('projects-group').query_db( query, data )
         return results[0]
 
 
