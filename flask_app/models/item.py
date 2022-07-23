@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from flask_app import app
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
@@ -90,8 +91,8 @@ class Item:
         if len(item['name']) <= 0:
             flash("Item name is required.")
             is_valid = False
-        if item['cost'] <= 0:
-            flash("Cost must be greater than 0.")
+        if int(item['cost']) < 1 or int(item['cost']) == None:
+            flash("Cost is required.")
             is_valid = False
         if len(item['description']) <= 0:
             flash("Description is required.")

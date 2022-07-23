@@ -21,9 +21,9 @@ def create_item():
     if Item.is_valid(request.form):
         data = {
             "name": request.form['name'],
-            "cost" : request.form['cost'],
+            "cost" : int(request.form['cost']),
             "description": request.form['description'],
-            "user_id": request.form["user_id"],
+            "user_id": session['user_id'],
             
         }
         Item.save(data)
@@ -39,9 +39,10 @@ def update_item():
     if Item.is_valid(request.form):
         data = {
             "id": request.form["id"],
-            "title": request.form['title'],
-            "content" : request.form['content'],
-            "description": request.form['description']        }
+            "name": request.form['name'],
+            "cost" : int(request.form['cost']),
+            "description": request.form['description']
+             }
         Item.update_item(data)
         return redirect("/items")
     else:

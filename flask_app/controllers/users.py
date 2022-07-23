@@ -61,8 +61,12 @@ def dashboard():
     data = {
         'id' : session['user_id']
     }
+
+    image_data = {
+        "user_id": session['user_id']
+    }
     user = User.get_user_by_id(data)
-    return render_template('dashboard.html', user = user, img = Image.get_user_image(data))
+    return render_template('dashboard.html', user = user, img = Image.get_user_image(image_data))
 
 
 @app.route("/uploadPic")
