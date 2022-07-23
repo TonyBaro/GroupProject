@@ -14,8 +14,11 @@
         <h1>Emarket</h1>
         <div class="flex">
             <p>{{user.username}}</p>
-            <img src="#" alt="profile image">
-            <!-- add a profile image -->
+            {%if img.id != null %}
+            <p><a href="/uploadPic">Add photo</a></p>
+            {%else%}
+            <img src="static/img/{{img.file}}" alt="profile image">
+            {%endif%}
         </div>
     </div>
     <div id = "sub-header">
