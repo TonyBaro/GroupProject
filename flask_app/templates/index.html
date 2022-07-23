@@ -4,49 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     <title>Document</title>
 </head>
-<body>
-    <div class="page" style="width: 100vw; height: 100vh; display: flex; justify-content: center; ">
-        <div class="left" style="margin:20px ; border: 2px solid black; background-color: aquamarine; width:30%" >
-            <h1>Register</h1>
-            {% with messages = get_flashed_messages(category_filter=['register']) %}
-                {% if messages %}                            
-                    {% for message in messages %}
-                        <p style="color:red">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <form action="/register" method="post" style="display:flex;flex-direction:column">
-                <label for="username">username:</label>
-                <input type="text" name="username">
-                <label for="email">Email:</label>
-                <input type="text" name="email">
-                <label for="password">Password:</label>
-                <input type="text" name="password">
-                <label for="confirm">Confirm Password:</label>
-                <input type="text" name="confirm">
-                <button>Register</button>
+<body class="p-3 mb-2 bg-light text-dark">
+    <h1 class="text-center" style="color:royalblue;">Emarket</h1>
+    <div>
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p style="color: red;" class="text-center">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="d-flex justify-content-center" style="gap: 300px;">
+        <div id = "register">
+            <h1 style="color:royalblue;">Register</h1>
+            <form action="/user/register" method="post">
+                <div class = "label" class = "form-group">
+                    <label>
+                        Username:
+                        <input type="text" name="last_name" class = "form-control">
+                    </label>
+                </div>
+                <div class = "label" class = "form-group">
+                    <label>
+                        Email:
+                        <input type="text" name="email" class = "form-control">
+                    </label>
+                </div>
+                <div class="label" class = "form-group">
+                    <label>
+                        Password:
+                        <input type="password" name="password" id="password" class = "form-control">
+                    </label>
+                </div>
+                <div class="label" class = "form-group">
+                    <label>
+                        Confirm Password:
+                        <input type="password" name="confirmpassword" id="confirmpassword" class = "form-control">
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <div class="right" style="margin:20px ; border: 2px solid black; background-color:chartreuse; width:30% ">
-            <h2>Log In:</h2>
-            {% with messages = get_flashed_messages(category_filter=['login']) %}
-                {% if messages %}                            
-                    {% for message in messages %}
-                        <p style="color:red">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <form action="/log_in" method="post" style="display:flex; flex-direction:column">
-                <label for="email">Email:</label>
-                <input type="text" name="email">
-                <label for="password">Password:</label>
-                <input type="text" name="password">
-                <button>Log In</button>
+        <div id = "login">
+            <h1 style="color:royalblue;">Login</h1>
+            <form action="/user/login" method="post">
+                <div class = "label" class = "form-group">
+                    <label>
+                        Email:
+                        <input type="text" name="email" class = "form-control">
+                    </label>
+                </div>
+                <div class="label" class = "form-group">
+                    <label>
+                        Password:
+                        <input type="password" name="password" id="password" class = "form-control">
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
-    
 </body>
 </html>
