@@ -8,8 +8,7 @@ from flask import flash
 class Item:
     def __init__(self, data):
         self.id = data['id']
-        self.creator_first_name = data["creator_first_name"]
-        self.creator_last_name = data["creator_last_name"]
+        self.creator= data["creator"]
         self.name = data["name"]
         self.cost = data['cost']
         self.description = data['description']
@@ -34,7 +33,7 @@ class Item:
     
     @classmethod
     def get_all_items_with_users(cls):
-        query = "SELECT users.first_name as creator_first_name, users.last_name as creator_last_name, items.* from items left join users on users.id = items.user_id;"
+        query = "SELECT users.username as creator, items.* from items left join users on users.id = items.user_id;"
         results = connectToMySQL('projects-group').query_db(query)
         items = []
         for item in results:
@@ -52,7 +51,7 @@ class Item:
     
     @classmethod
     def get_item(cls, data):
-        query = "SELECT users.first_name as creator_first_name, users.last_name as creator_last_name, items.* from items left join users on users.id = items.user_id where items.id = %(id)s;"
+        query = "SELECT users.username as creator, items.* from items left join users on users.id = items.user_id where items.id = %(id)s;"
         results = connectToMySQL('projects-group').query_db(query, data)
         if len(results) < 1:
             return False

@@ -2,6 +2,7 @@ from flask_app import app
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.item import Item
 from flask_app.models.user import User
+from flask_app.models.image import Image
 
 
 
@@ -9,7 +10,16 @@ from flask_app.models.user import User
 def all_items():
     if "user_id" not in session:
         return redirect("/logout")
-    return render_template("all_items.html", allItems = Item.get_all_items_with_users())
+    data = {
+        "id": session["user_id"]
+    }
+    image_data = {
+        "user_id": session['user_id']
+    }
+    return render_template("allItems.html", 
+                            allItems = Item.get_all_items_with_users(), 
+                            user = User.get_user_by_id(data),
+                            img = Image.get_user_image(image_data) )
 
 
 

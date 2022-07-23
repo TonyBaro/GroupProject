@@ -22,6 +22,9 @@ body {
 
 
 
+
+
+
 #footer {
     background-color: darkslategrey;
     margin-top: 50px;
@@ -42,3 +45,11 @@ body {
     gap: 200px;
 }
 
+table {
+    text-align: center;
+}
+
+
+table a {
+    margin-left: 8px;
+}
