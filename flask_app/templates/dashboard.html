@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     <title>Welcome {{user.username}}</title>
 </head>
 <body>
-    
+    <div id ="header">
+        <h1>Emarket</h1>
+        <div class="flex">
+            <p>{{user.username}}</p>
+            <img src="#" alt="profile image">
+            <!-- add a profile image -->
+        </div>
+    </div>
+    <div id = "sub-header">
+        <img src="#" alt="changing images">  
+        <!-- change images using javascript -->
+    </div>
+    <div>
+        <h2>Welxome to Emarket. Exlpore the world of endless marchandise and Items. Add on to the collection!</h2>
+        <form action="/create/item" method="post">
+            <div class ="form-group">
+                <label>
+                    Item Name
+                    <input type="text" name="name" class ="form-control">
+                </label>
+            </div>
+            <div  class ="form-group">
+                <label>
+                    Cost
+                    <input type="number" name="cost" class ="form-control" >
+                </label>
+            </div>
+            <div  class ="form-group">
+                <label>
+                    Description
+                    <textarea name="description" cols="50" rows="10" class ="form-control"></textarea>
+                </label>
+            </div>
+        </form>
+        <footer>
+            <p><a href ="/items">See all Items</a></p>
+            <p><a href="#">My Purchases</a></p>
+        </footer>
+    </div>
 </body>
 </html>
