@@ -10,7 +10,7 @@
     <title>Welcome {{user.username}}</title>
 </head>
 <body>
-    <div id ="header">
+    <div id ="header" class = "flex">
         <h1>Emarket</h1>
         <div class="flex">
             <p>{{user.username}}</p>
@@ -22,9 +22,10 @@
         <img src="#" alt="changing images">  
         <!-- change images using javascript -->
     </div>
-    <div>
-        <h2>Welxome to Emarket. Exlpore the world of endless marchandise and Items. Add on to the collection!</h2>
-        <form action="/create/item" method="post">
+    <div class = "flex-middle">
+        <h2 style = "width: 20%; text-align:center">Welcome to Emarket. Exlpore the world of endless merchandise and Items. Add on to the collection!</h2>
+        <form action="/create/item" method="post" style="margin-top: 100px;">
+            <h3 style="color: darkslategrey;">ADD YOUR ITEM</h3>
             <div class ="form-group">
                 <label>
                     Item Name
@@ -43,11 +44,12 @@
                     <textarea name="description" cols="50" rows="10" class ="form-control"></textarea>
                 </label>
             </div>
+            <button type="submit" class="btn btn-primary">Add Item</button>
         </form>
-        <footer>
-            <p><a href ="/items">See all Items</a></p>
-            <p><a href="#">My Purchases</a></p>
-        </footer>
     </div>
+    <footer id="footer" class = "flex-middle">
+        <p><a href ="/items">See all Items</a></p>
+        <p><a href="#">My Purchases</a></p>
+    </footer>
 </body>
 </html>
