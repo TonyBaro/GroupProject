@@ -13,7 +13,7 @@ class Purchase:
         results = connectToMySQL('projects-group').query_db(query)
         purchases = []
         for purchase in results:
-            purchases.append( cls(purchase) )
+            purchases.append(cls(purchase))
         return purchases
     
     @classmethod

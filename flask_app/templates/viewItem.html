@@ -12,6 +12,7 @@
 <body>
     <div id ="header" class = "flex">
         <h1>Emarket</h1>
+        <p><a href="/log_out">Logout</a></p>
         <div class="flex">
             <p>Hello, {{user.username}}</p>
             {%if img.id != null %}
@@ -28,11 +29,17 @@
             <h2>This Item costs ${{item.cost}}</h2>
         </div>
     </div>
+    {%if session.user_id != item.user_id%}
+    {%if in_database%}
+    <h2 style="text-align: center; color: gold;">Bought</h2>
+    {%else%}
     <form action="/buy/item" method="post" id = "purchase-form">
         <input type="hidden" name="user_id" value="{{session.user_id}}">
         <input type="hidden" name="item_id" value="{{item.id}}">
         <button class="btn btn-primary">Purchase</button>
     </form>
+    {%endif%}
+    {%endif%}
     <div id = "links" class = "flex-middle">
         <p><a href ="/items">See all Items</a></p>
         <p><a href ="/dashboard">Dashboard</a></p>

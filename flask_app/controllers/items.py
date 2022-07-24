@@ -3,7 +3,7 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.item import Item
 from flask_app.models.user import User
 from flask_app.models.image import Image
-
+from flask_app.models.purchase import Purchase
 
 
 @app.route("/items")
@@ -78,12 +78,18 @@ def view_item(id):
     image_data = {
         "user_id": session['user_id']
     }
-    
+
+    item_data = {
+        "item_id": id
+    }
+
+    in_database = Purchase.get_item_purchase(item_data)
 
     return render_template("viewItem.html", 
                             item = Item.get_item(data),
                             user = User.get_user_by_id(user_data),
-                            img = Image.get_user_image(image_data))
+                            img = Image.get_user_image(image_data),
+                            in_database=in_database)
 
  
 @app.route("/edit/item/<int:id>")
@@ -118,3 +124,17 @@ def delete_item(id):
     
     Item.delete_item(data)
     return redirect("/items")
+
+
+@app.route("/buy/item", methods=["POST"])
+def buy_item():
+    in_database = Purchase.get_item_purchase(request.form)
+    data = {
+        "user_id": request.form["user_id"],
+        "item_id": request.form['item_id']
+    }
+    if not in_database:
+        Purchase.add_purchase(data)
+        return redirect(f"/view/item/{request.form['item_id']}")
+    else:
+        return redirect(f"/view/item/{request.form['item_id']}")
