@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id ="header" class = "flex">
+        <h1>Emarket</h1>
+        <div class="flex">
+            <p>Hello, {{user.username}}</p>
+            {%if img.id != null %}
+            <img src="/static/img/{{img.file}}" alt="profile image">
+            {%else%}
+            <p><a href="/uploadPic">Add photo</a></p>
+            {%endif%}
+        </div>
+    </div>
+    <form action="/update/item" method="post" style="margin-top: 60px; text-align: center;">
+        <h3 style="color: darkslategrey;">UPDATE THIS ITEM</h3>
+        <input type="hidden" name="id" value="{{item.id}}">
+        <div class ="form-group">
+            <label>
+                Item Name
+                <input type="text" name="name" class ="form-control" value="{{item.name}}">
+            </label>
+        </div>
+        <div  class ="form-group">
+            <label>
+                Cost
+                <input type="number" name="cost" class ="form-control" value="{{item.cost}}">
+            </label>
+        </div>
+        <div  class ="form-group">
+            <label>
+                Description
+                <textarea name="description" cols="50" rows="10" class ="form-control">{{item.description}}</textarea>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    <div id = "footer" class = "flex-middle">
+        <p><a href ="/items">See all Items</a></p>
+        <p><a href ="/dashboard">Dashboard</a></p>
+        <p><a href="#">My Purchases</a></p>
+    </div>
+</body>
+</html>

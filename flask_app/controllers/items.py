@@ -98,9 +98,14 @@ def edit_item(id):
     data = {
         "id": id
     }
+
+    image_data = {
+        "user_id": session['user_id']
+    }
     return render_template("updateItem.html",
                             user = User.get_user_by_id(user_data),
-                            item = Item.get_item(data))
+                            item = Item.get_item(data),
+                            img = Image.get_user_image(image_data))
 
 @app.route("/delete/item/<int:id>")
 def delete_item(id):
