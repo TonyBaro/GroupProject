@@ -15,7 +15,7 @@
         <div class="flex">
             <p>Welcome, {{user.username}}</p>
             {%if img.id != null %}
-            <img src="static/img/{{img.file}}" alt="profile image">
+            <img src="/static/img/{{img.file}}" alt="profile image">
             {%else%}
             <p><a href="/uploadPic">Add photo</a></p>
             {%endif%}

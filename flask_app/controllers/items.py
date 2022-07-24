@@ -75,9 +75,15 @@ def view_item(id):
         "id" : id
     }
     
+    image_data = {
+        "user_id": session['user_id']
+    }
     
 
-    return render_template("viewItem.html", item = Item.get_item(data), user = User.get_user_by_id(user_data))
+    return render_template("viewItem.html", 
+                            item = Item.get_item(data),
+                            user = User.get_user_by_id(user_data),
+                            img = Image.get_user_image(image_data))
 
  
 @app.route("/edit/item/<int:id>")

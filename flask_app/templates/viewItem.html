@@ -21,34 +21,21 @@
             {%endif%}
         </div>
     </div>
-    <table class="table">
-        <thead class="table-dark">
-          <tr>
-            <td>Item Name</td>
-            <td>Cost</td>
-            <td>Added by</td>
-            <td>Actions</td>
-          </tr>
-        </thead>
-        <tbody>
-          {%for item in allItems%}
-          <tr>
-            <td>{{item.name}}</td>
-            <td>${{item.cost}}</td>
-            <td>{{item.creator}}</td>
-            <td>
-                {%if item.user_id == session.user_id%}
-                <a href="/edit/item/{{item.id}}">Edit</a><a href="/view/item/{{item.id}}">View</a><a href="/delete/item/{{item.id}}">Delete</a>
-                {%else%}
-                <a href="/view/item/{{item.id}}">View</a>
-                {%endif%}
-            </td>
-          </tr>
-          {%endfor%}
-        </tbody>
-    </table>
-
-    <p style="text-align: center;"><a href="/dashboard">Back to dashboard</a></p>
-    
+    <div>
+        <h2>{{item.name}}</h2>
+        <div class ="flex">
+            <p>{{item.description}}</p>
+            <h2>{{item.cost}}</h2>
+        </div>
+    </div>
+    <form action="/buy/item" method="post">
+        <input type="hidden" name="user_id" value="{{session.user_id}}">
+        <input type="hidden" name="item_id" value="{{item.id}}">
+        <button>Purchase</button>
+    </form>
+    <footer id="footer" class = "flex-middle">
+        <p><a href ="/items">See all Items</a></p>
+        <p><a href="#">My Purchases</a></p>
+    </footer>
 </body>
 </html>
