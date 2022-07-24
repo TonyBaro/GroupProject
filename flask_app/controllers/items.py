@@ -50,7 +50,7 @@ def update_item():
         data = {
             "id": request.form["id"],
             "name": request.form['name'],
-            "cost" : int(request.form['cost']),
+            "cost" : request.form['cost'],
             "description": request.form['description']
              }
         Item.update_item(data)
