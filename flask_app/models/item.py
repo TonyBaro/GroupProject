@@ -88,7 +88,7 @@ class Item:
         if len(item['name']) <= 0:
             flash("Item name is required.")
             is_valid = False
-        if int(item['cost']) < 1 or int(item['cost']) == None:
+        if  len(item['cost']) <= 0 or int(item['cost']) < 1:
             flash("Cost is required.")
             is_valid = False
         if len(item['description']) <= 0:

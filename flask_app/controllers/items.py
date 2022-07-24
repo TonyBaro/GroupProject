@@ -31,7 +31,7 @@ def create_item():
     if Item.is_valid(request.form):
         data = {
             "name": request.form['name'],
-            "cost" : int(request.form['cost']),
+            "cost" : request.form['cost'],
             "description": request.form['description'],
             "user_id": session['user_id'],
             
