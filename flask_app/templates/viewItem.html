@@ -21,21 +21,22 @@
             {%endif%}
         </div>
     </div>
-    <div>
+    <div id ="content">
         <h2>{{item.name}}</h2>
-        <div class ="flex">
+        <div>
             <p>{{item.description}}</p>
-            <h2>{{item.cost}}</h2>
+            <h2>This Item costs ${{item.cost}}</h2>
         </div>
     </div>
-    <form action="/buy/item" method="post">
+    <form action="/buy/item" method="post" id = "purchase-form">
         <input type="hidden" name="user_id" value="{{session.user_id}}">
         <input type="hidden" name="item_id" value="{{item.id}}">
-        <button>Purchase</button>
+        <button class="btn btn-primary">Purchase</button>
     </form>
-    <footer id="footer" class = "flex-middle">
+    <div id = "links" class = "flex-middle">
         <p><a href ="/items">See all Items</a></p>
+        <p><a href ="/dashboard">Dashboard</a></p>
         <p><a href="#">My Purchases</a></p>
-    </footer>
+    </div>
 </body>
 </html>

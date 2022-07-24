@@ -21,8 +21,21 @@ body {
 }
 
 
+#content {
+    text-align: center;
+    margin-top: 50px;
+}
 
 
+#links {
+    margin-top: 70px;
+}
+
+
+#purchase-form {
+    text-align: center;
+    margin-top: 60px;
+}
 
 
 #footer {
@@ -53,3 +66,5 @@ table {
 table a {
     margin-left: 8px;
 }
+
+
