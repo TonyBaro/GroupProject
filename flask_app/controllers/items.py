@@ -52,7 +52,7 @@ def update_item():
             "name": request.form['name'],
             "cost" : request.form['cost'],
             "description": request.form['description']
-             }
+            }
         Item.update_item(data)
         return redirect("/items")
     else:
@@ -91,7 +91,7 @@ def view_item(id):
                             img = Image.get_user_image(image_data),
                             in_database=in_database)
 
- 
+
 @app.route("/edit/item/<int:id>")
 def edit_item(id):
     if "user_id" not in session:
@@ -138,3 +138,4 @@ def buy_item():
         return redirect(f"/view/item/{request.form['item_id']}")
     else:
         return redirect(f"/view/item/{request.form['item_id']}")
+        

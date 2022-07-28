@@ -34,7 +34,7 @@ def register():
         data.update({'password':pw_hash})
         user = User.add_user(data)
         session['user_id'] = user
-        return redirect('/dashboard')
+        return redirect('/items')
     else:
         return redirect('/')
 
@@ -51,7 +51,7 @@ def log_in():
         flash("Bad Email","login")
         return redirect('/')
     session['user_id'] = user.id
-    return redirect('/dashboard')
+    return redirect('/items')
 
 @app.route('/dashboard')
 def dashboard():
